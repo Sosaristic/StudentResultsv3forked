@@ -1,8 +1,12 @@
 import React, { useState } from "react";
 import TextField from "../components/ui/TextField";
 import { Button } from "../components/ui";
+import { postData } from "../utils/fetchData";
+import { useAppContext } from "../context/AppContext";
+import { toast } from "react-toastify";
 
 export default function Register() {
+  const { setLoader } = useAppContext();
   const [registerValues, setRegisterValues] = useState({
     username: "",
     email: "",
@@ -18,6 +22,17 @@ export default function Register() {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
+    setLoader(true);
+    postData("dj-rest-auth/registration/", registerValues)
+      .then((response) => {
+        console.log(response);
+        setLoader(false);
+      })
+      .catch((error) => {
+        console.log(error);
+        setLoader(false);
+        toast.error(error.message);
+      });
     console.log(registerValues);
   };
   return (
@@ -53,7 +68,12 @@ export default function Register() {
         />
         <Button
           type={"submit"}
-          disabled={!registerValues.password1 || !registerValues.password2 || !registerValues.email || !registerValues.username}
+          disabled={
+            !registerValues.password1 ||
+            !registerValues.password2 ||
+            !registerValues.email ||
+            !registerValues.username
+          }
         >
           Register
         </Button>

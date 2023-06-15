@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom"
 import { useAppContext } from "../context/AppContext"
-import { loginIn } from "../utils/fetchData"
+import { postData } from "../utils/fetchData"
 import {toast} from "react-toastify"
 
 export function useAuthentication(){
@@ -17,7 +17,7 @@ const getToken = ()=>{
 
 const signIn = (userValues)=>{
     setLoader(true)
-loginIn("rest-auth/login/", userValues).then((value)=>{
+postData("rest-auth/login/", userValues).then((value)=>{
     setLoader(false)
     navigate("/dashboard")
     setLoginToken(value.data)
