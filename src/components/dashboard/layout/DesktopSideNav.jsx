@@ -22,8 +22,8 @@ const SideNavLink = ({ name, link, icon }) => {
       end={true}
       className={({ isActive }) =>
         isActive
-          ? "flex relative items-center gap-2 text-dark-green text-[1rem] p-2  border border-grey-white bg-background shadow-md rounded-2xl shadow-gray-500 font-[500]"
-          : "flex relative items-center gap-2 text-grey-white text-[1rem] p-2 font-[500]"
+          ? "flex relative items-center gap-2 text-dark-green text-[1rem] p-2 capitalize  border border-grey-white bg-background shadow-md rounded-2xl shadow-gray-500 font-[500]"
+          : "flex relative items-center gap-2 text-grey-white text-[1rem] p-2 capitalize font-[500]"
       }
     >
       <span className="text-[1.5rem]">{icon}</span>
@@ -38,7 +38,7 @@ export default function DesktopSideNav() {
     <section>
       <div className="flex flex-col items-center text-grey-white text-[.9rem] mt-4 font-jost">
         <Avatar />
-        <p>Marcus Rashford</p>
+        <p className="text-[1.2rem] font-bold">Marcus Rashford</p>
         <p>Electronic engineering</p>
       </div>
       <div className="mt-8 flex flex-col gap-6">
