@@ -22,8 +22,8 @@ const SideNavLink = ({ name, link, icon }) => {
       end={true}
       className={({ isActive }) =>
         isActive
-          ? "flex relative items-center gap-2 text-dark-green text-[1rem] p-2 capitalize  border border-grey-white bg-background shadow-md rounded-2xl shadow-gray-500 font-[500]"
-          : "flex relative items-center gap-2 text-grey-white text-[1rem] p-2 capitalize font-[500]"
+          ? "flex relative gap-2 text-dark-green text-[1rem] p-2 capitalize  border border-grey-white bg-background shadow-md rounded-2xl shadow-gray-500 font-[500]"
+          : "flex relative hover:bg-v-dark-green items-center gap-2 text-grey-white text-[1rem] p-2 capitalize font-[500] rounded-2xl"
       }
     >
       <span className="text-[1.5rem]">{icon}</span>
@@ -47,7 +47,7 @@ export default function DesktopSideNav() {
         ))}
       </div>
 
-      <button type="button" className="w-full mt-[6rem] text-[.8rem] p-2 bg-background text-dark-green flex items-center justify-center rounded-2xl"
+      <button type="button" className="w-full mt-[6rem] text-[1rem] font-bold p-2 bg-background text-dark-green flex items-center justify-center gap-1 rounded-2xl"
       onClick={()=>signOut()}
       >
         <span className="text-[1.4rem]">
