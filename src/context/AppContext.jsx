@@ -7,7 +7,7 @@ const AppContext = createContext();
 
 export default function AppContextProvider({ children }) {
   const [loader, setLoader] = useState(false)
-  const [openSideNav, setOpenSideNav] = useState(true)
+  const [openSideNav, setOpenSideNav] = useState(false)
   const value = {
   loader,
   setLoader,

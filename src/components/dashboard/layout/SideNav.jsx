@@ -1,5 +1,6 @@
 import { NavLink } from "react-router-dom";
 import { useAuthentication } from "../../../hooks/useAuthentication";
+import { useAppContext } from "../../../context/AppContext";
 import { Avatar } from "../../ui";
 
 import { MdDashboard, MdLogout } from "react-icons/md";
@@ -16,10 +17,12 @@ const desktopSideBarLinks = [
 
 
 const SideNavLink = ({ name, link, icon }) => {
+  const {setOpenNavBar} = useAppContext()
   return (
     <NavLink
       to={link}
       end={true}
+      onClick={()=>setOpenNavBar(false)}
       className={({ isActive }) =>
         isActive
           ? "flex relative gap-2 text-dark-green text-[1rem] p-2 capitalize  border border-grey-white bg-background shadow-md rounded-2xl shadow-gray-500 font-[500]"
