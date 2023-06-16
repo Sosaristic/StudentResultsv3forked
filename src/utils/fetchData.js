@@ -7,3 +7,11 @@ export function postData(url, userValues) {
     return axios.post(` ${baseUrl}${url}`, userValues);
   } catch (error) {}
 }
+
+export function logOut(){
+  try {
+    return axios.post(`${baseUrl}rest-auth/logout/`)
+  } catch (error) {
+    
+  }
+}

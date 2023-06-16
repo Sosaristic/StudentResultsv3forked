@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom"
 import { useAppContext } from "../context/AppContext"
-import { postData } from "../utils/fetchData"
+import { postData, logOut } from "../utils/fetchData"
 import {toast} from "react-toastify"
 
 export function useAuthentication(){
@@ -10,6 +10,9 @@ const setLoginToken = (token)=>{
 window.sessionStorage.setItem("token", JSON.stringify(token))
 }
 
+const removeToken = ()=>{
+    window.sessionStorage.removeItem("token")
+}
 const getToken = ()=>{
     const token = window.sessionStorage.getItem("token")
     return token
@@ -24,12 +27,25 @@ postData("rest-auth/login/", userValues).then((value)=>{
 
 }).catch((error)=>{
     console.log(error);
-    toast.error(error.message)
+    toast.error("Error trying to log in")
 
     setLoader(false)
 })
 }
 
+const signOut = ()=>{
+    setLoader(true)
+logOut().then((value)=>{
+    setLoader(false)
+    removeToken()
+    navigate("/login", {replace: true})
+console.log(value);
+}).catch((error)=>{
+    toast.error("Error trying to log out")
+    setLoader(false)
+})
+}
 
-return {setLoginToken, getToken, signIn}
+
+return {setLoginToken, getToken, signIn, signOut}
 }

@@ -1,4 +1,5 @@
-import { Link, useLocation, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import { useAuthentication } from "../../../hooks/useAuthentication";
 import { Avatar } from "../../ui";
 
 import { MdDashboard, MdLogout } from "react-icons/md";
@@ -12,17 +13,7 @@ const desktopSideBarLinks = [
   { id: 4, name: "Notifications", link: "/dashboard/notifications", icon: <FaBell /> },
   { id: 5, name: "Student result", link: "/dashboard/student-result", icon: <HiDocumentText /> },
 ];
-const LinksCard = ({ name, link, icon }) => {
-  const { pathname } = useLocation();
-  console.log(pathname);
 
-  return (
-    <Link className="flex items-center gap-2 text-grey-white text-[1rem] font-[500]">
-      <span className="text-[1.5rem]">{icon}</span>
-      {name}
-    </Link>
-  );
-};
 
 const SideNavLink = ({ name, link, icon }) => {
   return (
@@ -42,9 +33,10 @@ const SideNavLink = ({ name, link, icon }) => {
 };
 
 export default function DesktopSideNav() {
+  const {signOut} = useAuthentication()
   return (
     <section>
-      <div className="flex flex-col items-center text-grey-white text-[.8rem] mt-4 font-inter">
+      <div className="flex flex-col items-center text-grey-white text-[.9rem] mt-4 font-jost">
         <Avatar />
         <p>Marcus Rashford</p>
         <p>Electronic engineering</p>
@@ -55,7 +47,9 @@ export default function DesktopSideNav() {
         ))}
       </div>
 
-      <button className="w-full mt-[6rem] text-[.8rem] p-2 bg-background text-dark-green flex items-center justify-center rounded-2xl">
+      <button type="button" className="w-full mt-[6rem] text-[.8rem] p-2 bg-background text-dark-green flex items-center justify-center rounded-2xl"
+      onClick={()=>signOut()}
+      >
         <span className="text-[1.4rem]">
           <MdLogout />
         </span>{" "}
