@@ -7,9 +7,12 @@ const AppContext = createContext();
 
 export default function AppContextProvider({ children }) {
   const [loader, setLoader] = useState(false)
+  const [openSideNav, setOpenSideNav] = useState(true)
   const value = {
   loader,
-  setLoader
+  setLoader,
+  openSideNav,
+  setOpenSideNav
   };
   return <AppContext.Provider value={value}>{children}
  {loader && <Loader /> }

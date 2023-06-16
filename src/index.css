@@ -25,7 +25,7 @@ body,
 @layer components{
 /* loader */
 .container{
-  background-color: rgba(250, 252, 252, 0.5);
+  background-color: rgba(250, 252, 252, 0.4);
 }
 .loader {
   width: 48px;
@@ -80,6 +80,15 @@ body,
     transform: rotate(-360deg);
   }
 }
-    
+   
+.popover{
+  background-color: rgba(250, 252, 252, 0.5);
+  position: relative;
+}
+.side-bar{
+  background-color: rgba(250, 252, 252, 0.5);
+  
+
+}
 
 }

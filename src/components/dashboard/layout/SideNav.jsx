@@ -32,7 +32,7 @@ const SideNavLink = ({ name, link, icon }) => {
   );
 };
 
-export default function DesktopSideNav() {
+export default function SideNav() {
   const {signOut} = useAuthentication()
   return (
     <section>
