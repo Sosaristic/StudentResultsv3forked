@@ -16,7 +16,7 @@ export function UserAuthenticationLayout() {
       <nav className="w-full bg-dark-green sm:py-5 py-5 px-4">
         <div className="flex max-w-6xl mx-auto items-center gap-4">
           <img src={img1} alt="" className="h-16" />{" "}
-          <h1 className="text-xl text-white font-righteous">
+          <h1 className="text-lg text-white font-righteous">
             Federal University of Technology Owerri
           </h1>
         </div>
