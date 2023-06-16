@@ -1,5 +1,6 @@
 import { Outlet, Navigate } from "react-router-dom";
 import DesktopSideNav from "./dashboard/layout/DesktopSideNav";
+import DashboardHeader from "./dashboard/layout/DashboardHeader";
 
 export function Protected() {
   const token = window.sessionStorage.getItem("token");
@@ -9,11 +10,12 @@ export function Protected() {
   }
   return (
     <div className="bg-background min-h-screen relative flex ">
-      <div className="w-2/12 hidden lg:block bg-dark-green rounded-tr-2xl rounded-br-2xl px-4">
+      <div className="w-2/12 hidden lg:block bg-v-dark-green px-4">
         <DesktopSideNav />
       </div>
 
-      <div className="w-10/12 lg:full">
+      <div className="w-full lg:w-10/12">
+        <DashboardHeader />
         <Outlet />
       </div>
     </div>
