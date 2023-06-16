@@ -1,28 +1,23 @@
 import { createContext, useContext, useState } from "react";
 import { Loader } from "../components/ui";
-import { ToastContainer, Zoom } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, Zoom } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const AppContext = createContext();
 
 export default function AppContextProvider({ children }) {
-  const [loader, setLoader] = useState(false)
-  const [openSideNav, setOpenSideNav] = useState(false)
+  const [loader, setLoader] = useState(false);
   const value = {
-  loader,
-  setLoader,
-  openSideNav,
-  setOpenSideNav
+    loader,
+    setLoader,
   };
-  return <AppContext.Provider value={value}>{children}
- {loader && <Loader /> }
- <ToastContainer 
-       transition={Zoom}
-       position='top-center'
-       hideProgressBar
-       theme='dark'
-      />
-  </AppContext.Provider>;
+  return (
+    <AppContext.Provider value={value}>
+      {children}
+      {loader && <Loader />}
+      <ToastContainer transition={Zoom} position="top-center" hideProgressBar theme="dark" />
+    </AppContext.Provider>
+  );
 }
 
 export function useAppContext() {

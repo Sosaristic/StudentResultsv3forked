@@ -2,10 +2,8 @@ import React from 'react'
 import {ImMenu} from "react-icons/im"
 import {img1} from "../../../assets/index"
 import { FaBell } from 'react-icons/fa'
-import { useAppContext } from '../../../context/AppContext'
 
-export default function DashboardHeader() {
-  const {setOpenSideNav} = useAppContext()
+export default function DashboardHeader({setOpenSideNav}) {
   return (
     <header className='h-[4rem] flex gap-4 w-full items-center px-4 bg-v-dark-green text-grey-white'>
         <div onClick={()=>setOpenSideNav(true)} className='text-[2rem] lg:hidden'><ImMenu /></div>

@@ -1,6 +1,5 @@
 import { NavLink } from "react-router-dom";
 import { useAuthentication } from "../../../hooks/useAuthentication";
-import { useAppContext } from "../../../context/AppContext";
 import { Avatar } from "../../ui";
 
 import { MdDashboard, MdLogout } from "react-icons/md";
@@ -15,14 +14,12 @@ const desktopSideBarLinks = [
   { id: 5, name: "Student result", link: "/dashboard/student-result", icon: <HiDocumentText /> },
 ];
 
-
-const SideNavLink = ({ name, link, icon }) => {
-  const {setOpenNavBar} = useAppContext()
+const SideNavLink = ({ name, link, icon, setOpenSideNav }) => {
   return (
     <NavLink
       to={link}
       end={true}
-      onClick={()=>setOpenNavBar(false)}
+      onClick={() => setOpenSideNav(false)}
       className={({ isActive }) =>
         isActive
           ? "flex relative gap-2 text-dark-green text-[1rem] p-2 capitalize  border border-grey-white bg-background shadow-md rounded-2xl shadow-gray-500 font-[500]"
@@ -35,8 +32,8 @@ const SideNavLink = ({ name, link, icon }) => {
   );
 };
 
-export default function SideNav() {
-  const {signOut} = useAuthentication()
+export default function SideNav({ setOpenSideNav }) {
+  const { signOut } = useAuthentication();
   return (
     <section>
       <div className="flex flex-col items-center text-grey-white text-[.9rem] mt-4 font-jost">
@@ -46,12 +43,14 @@ export default function SideNav() {
       </div>
       <div className="mt-8 flex flex-col gap-6">
         {desktopSideBarLinks.map((item) => (
-          <SideNavLink key={item.id} {...item} />
+          <SideNavLink key={item.id} {...item} setOpenSideNav={setOpenSideNav} />
         ))}
       </div>
 
-      <button type="button" className="w-full mt-[6rem] text-[1rem] font-bold p-2 bg-background text-dark-green flex items-center justify-center gap-1 rounded-2xl"
-      onClick={()=>signOut()}
+      <button
+        type="button"
+        className="w-full mt-[6rem] text-[1rem] font-bold p-2 bg-background text-dark-green flex items-center justify-center gap-1 rounded-2xl"
+        onClick={() => signOut()}
       >
         <span className="text-[1.4rem]">
           <MdLogout />
