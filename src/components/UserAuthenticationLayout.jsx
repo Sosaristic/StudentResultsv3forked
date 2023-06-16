@@ -12,7 +12,7 @@ export function UserAuthenticationLayout() {
     if (pathname == "/register") return "Student Registration";
   };
   return (
-    <div className="flex flex-col h-full bg-slate-100">
+    <div className="flex flex-col h-full bg-background">
       <nav className="w-full bg-dark-green sm:py-5 py-5 px-4">
         <div className="flex max-w-6xl mx-auto items-center gap-4">
           <img src={img1} alt="" className="h-16" />{" "}
