@@ -1,5 +1,7 @@
 import { NavLink } from "react-router-dom";
 import { useAuthentication } from "../../../hooks/useAuthentication";
+import { useDashboardContext } from "../../../context/DashboardContext";
+import { useAppContext } from "../../../context/AppContext";
 import { Avatar } from "../../ui";
 
 import { MdDashboard, MdLogout } from "react-icons/md";
@@ -14,7 +16,8 @@ const desktopSideBarLinks = [
   { id: 5, name: "Student result", link: "/dashboard/student-result", icon: <HiDocumentText /> },
 ];
 
-const SideNavLink = ({ name, link, icon, setOpenSideNav }) => {
+const SideNavLink = ({ name, link, icon}) => {
+  const {setOpenSideNav} = useDashboardContext()
   return (
     <NavLink
       to={link}
@@ -32,24 +35,28 @@ const SideNavLink = ({ name, link, icon, setOpenSideNav }) => {
   );
 };
 
-export default function SideNav({ setOpenSideNav }) {
+export default function SideNav() {
   const { signOut } = useAuthentication();
+  const {userData} = useAppContext()
+
+
+  
   return (
-    <section>
+    <section className="h-full relative flex flex-col">
       <div className="flex flex-col items-center text-grey-white text-[.9rem] mt-4 font-jost">
-        <Avatar />
-        <p className="text-[1.2rem] font-bold">Marcus Rashford</p>
-        <p>Electronic engineering</p>
+        <Avatar imgUrl= {userData?.photo}/>
+        <p className="text-[1.2rem] font-bold">{userData?.user.last_name || "Student"} {userData?.user.first_name}</p>
+        <p>{userData?.student_dept.name}</p>
       </div>
       <div className="mt-8 flex flex-col gap-6">
         {desktopSideBarLinks.map((item) => (
-          <SideNavLink key={item.id} {...item} setOpenSideNav={setOpenSideNav} />
+          <SideNavLink key={item.id} {...item} />
         ))}
       </div>
 
       <button
         type="button"
-        className="w-full mt-[6rem] text-[1rem] font-bold p-2 bg-background text-dark-green flex items-center justify-center gap-1 rounded-2xl"
+        className="w-full mt-4  text-[1rem] font-bold p-2 bg-background text-dark-green flex items-center justify-center gap-1 rounded-2xl"
         onClick={() => signOut()}
       >
         <span className="text-[1.4rem]">

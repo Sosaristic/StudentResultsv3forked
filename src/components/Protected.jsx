@@ -4,33 +4,35 @@ import SideNav from "./dashboard/layout/SideNav";
 import DashboardHeader from "./dashboard/layout/DashboardHeader";
 import { MdClose } from "react-icons/md";
 import useClickAwayListener from "../hooks/useClickAway";
+import { useDashboardContext } from "../context/DashboardContext";
 
 export function Protected() {
   const sideBarRef = useRef(null);
-  const [openSideNav, setOpenSideNav] = useState(false);
+  const {openSideNav, setOpenSideNav} = useDashboardContext()
   useClickAwayListener(sideBarRef, () => setOpenSideNav(false));
   const token = window.sessionStorage.getItem("token");
-  console.log(token);
   if (!token) {
     return <Navigate to={"/login"} />;
   }
   return (
     <div className="bg-background min-h-screen relative flex ">
+      {/* desktop side navigation */}
       <div className="w-2/12 hidden lg:block bg-v-dark-green px-4">
-        <SideNav openSideNav={setOpenSideNav} />
+        <SideNav />
       </div>
 
-      <div className="w-full lg:w-10/12">
+      <div className="w-full relative lg:w-10/12">
+        {/* mobile side nav */}
         <div
-          className={`container fixed top-0 bottom-0 left-0 lg:hidden ${
+          className={`container fixed top-0 bottom-0 left-0 lg:hidden z-[100] ${
             openSideNav ? "translate-x-0" : "translate-x-[-100%]"
           } transition-transform duration-500 ease-out`}
         >
           <div
             ref={sideBarRef}
-            className="lg:hidden absolute min-h-screen w-[70%] translate-x-0 px-4 bg-dark-green"
+            className="lg:hidden absolute min-h-screen w-[70%] md:w-[50%] translate-x-0 px-4 bg-dark-green"
           >
-            <SideNav setOpenSideNav={setOpenSideNav} />
+            <SideNav />
             <div
               onClick={() => setOpenSideNav(false)}
               className="absolute top-0 right-0 text-grey-white text-[3rem]"
@@ -39,7 +41,7 @@ export function Protected() {
             </div>
           </div>
         </div>
-        <DashboardHeader setOpenSideNav={setOpenSideNav} />
+        <DashboardHeader  />
         <Outlet />
       </div>
     </div>

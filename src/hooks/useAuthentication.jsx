@@ -1,11 +1,13 @@
 import { useNavigate } from "react-router-dom"
 import { useAppContext } from "../context/AppContext"
+import {useDashboardContext} from "../context/DashboardContext"
 import { postData, logOut } from "../utils/fetchData"
 import {toast} from "react-toastify"
+import axios from "axios"
 
 export function useAuthentication(){
 const navigate = useNavigate()
-const {setLoader} = useAppContext()
+const {setLoader, setUserData} = useAppContext()
 const setLoginToken = (token)=>{
 window.sessionStorage.setItem("token", JSON.stringify(token))
 }
@@ -22,9 +24,12 @@ const signIn = (userValues)=>{
     setLoader(true)
 postData("rest-auth/login/", userValues).then((value)=>{
     setLoader(false)
-    navigate("/dashboard")
-    setLoginToken(value.data)
-
+    setLoginToken(value.data.key)
+   
+     fetchData(value.data.key).then((response)=>{
+        setUserData(response)
+      navigate("/dashboard")
+     })
 }).catch((error)=>{
     console.log(error);
     toast.error("Error trying to log in")
@@ -32,6 +37,19 @@ postData("rest-auth/login/", userValues).then((value)=>{
     setLoader(false)
 })
 }
+
+async function fetchData(token){
+    try {
+     const response = await axios.get("https://elinteerie1.pythonanywhere.com/api/student/", {
+        headers: {
+          'Authorization': `Token ${token}`
+        }
+      })
+      return response.data
+    } catch (error) {
+      
+    }
+  }
 
 const signOut = ()=>{
     setLoader(true)
@@ -47,5 +65,5 @@ console.log(value);
 }
 
 
-return {setLoginToken, getToken, signIn, signOut}
+return {setLoginToken, getToken, signIn, signOut, fetchData}
 }

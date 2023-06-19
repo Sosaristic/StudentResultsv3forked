@@ -1,11 +1,13 @@
 import React from 'react'
+import { useDashboardContext } from '../../../context/DashboardContext'
 import {ImMenu} from "react-icons/im"
 import {img1} from "../../../assets/index"
 import { FaBell } from 'react-icons/fa'
 
-export default function DashboardHeader({setOpenSideNav}) {
+export default function DashboardHeader() {
+  const {setOpenSideNav} = useDashboardContext()
   return (
-    <header className='h-[4rem] flex gap-4 w-full items-center px-4 bg-v-dark-green text-grey-white'>
+    <header className='h-[4rem] flex gap-4 w-full items-center px-4 bg-v-dark-green shadow-md text-grey-white'>
         <div onClick={()=>setOpenSideNav(true)} className='text-[2rem] lg:hidden'><ImMenu /></div>
         <div className='flex gap-2 items-center font-righteous'>
             <img src={img1} alt="" height={30} width={30}/>

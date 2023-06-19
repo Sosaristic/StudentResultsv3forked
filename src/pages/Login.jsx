@@ -24,7 +24,6 @@ function Login() {
   };
 
   const token = getToken();
-  console.log(token);
   if (token) {
     return <Navigate to={"/dashboard"} />;
   }

@@ -7,9 +7,12 @@ const AppContext = createContext();
 
 export default function AppContextProvider({ children }) {
   const [loader, setLoader] = useState(false);
+  const [userData, setUserData] = useState(null)
   const value = {
     loader,
     setLoader,
+    userData,
+    setUserData
   };
   return (
     <AppContext.Provider value={value}>

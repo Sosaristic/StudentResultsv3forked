@@ -21,6 +21,10 @@ export default {
         jost: ["Jost", "sans-serif"],
         inter: ["Inter", "sans-serif"],
       },
+      boxShadow: {
+        "dashboard-card": "0px 2px 2px 2px rgba(0, 0, 0, 0.6)",
+
+      },
     },
   },
   plugins: [],

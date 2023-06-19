@@ -91,4 +91,39 @@ body,
 
 }
 
+.active::after{
+  position: absolute;
+  content: "";
+  background-color: #f1f5f9;
+  height: 4rem;
+  width: 4rem;
+  right: -3rem;
+  border-radius: 50%;
+  top: 50%;
+  transform: translate(0, -50%);
+}
+
+.welcome{
+  grid-area: welcome;
+}
+.analytics{
+  grid-area: analytics;
+}
+.performance{
+  grid-area: performance;
+}
+.information{
+  grid-area: information;
+}
+
+.dashboard-desktop{
+display: grid;
+grid-template-columns: repeat(4, 1fr);
+grid-template-areas: 
+"welcome welcome welcome analytics"
+"performance performance performance analytics"
+"information information information analytics"
+;
+}
+
 }
