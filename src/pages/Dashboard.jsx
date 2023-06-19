@@ -33,7 +33,7 @@ const {data, error} = useSWR("https://elinteerie1.pythonanywhere.com/api/student
   return <div className="min-h-full min-w-full flex items-center justify-center"><SimpleLoader /></div>
  }
   
-
+console.log(data)
   return (
     <div>
       <main className="px-4 relative  min-h-full">

@@ -1,11 +1,12 @@
 import { NavLink } from "react-router-dom";
 import { useAuthentication } from "../../../hooks/useAuthentication";
 import { useDashboardContext } from "../../../context/DashboardContext";
-import { Avatar } from "../../ui";
+import { Avatar, SimpleLoader } from "../../ui";
 
 import { MdDashboard, MdLogout } from "react-icons/md";
 import { FaUser, FaEnvelope, FaBell } from "react-icons/fa";
 import { HiDocumentText } from "react-icons/hi";
+import { useEffect, useState } from "react";
 
 const desktopSideBarLinks = [
   { id: 1, name: "Dashboard", link: "/dashboard", icon: <MdDashboard /> },
@@ -15,8 +16,8 @@ const desktopSideBarLinks = [
   { id: 5, name: "Student result", link: "/dashboard/student-result", icon: <HiDocumentText /> },
 ];
 
-const SideNavLink = ({ name, link, icon}) => {
-  const {setOpenSideNav} = useDashboardContext()
+const SideNavLink = ({ name, link, icon }) => {
+  const { setOpenSideNav } = useDashboardContext();
   return (
     <NavLink
       to={link}
@@ -36,18 +37,24 @@ const SideNavLink = ({ name, link, icon}) => {
 
 export default function SideNav() {
   const { signOut } = useAuthentication();
-  const {user} = useDashboardContext()
+  const { user } = useDashboardContext();
 
-
-
-  
   return (
     <section className="h-full relative flex flex-col">
-      <div className="flex flex-col items-center text-grey-white text-[.9rem] mt-4 font-jost">
-        <Avatar imgUrl= {`http://elinteerie1.pythonanywhere.com/${user?.photo}`}/>
-        <p className="text-[1.2rem] font-bold">{user?.user.last_name || "Student"} {user?.user.first_name}</p>
-        <p>{user?.student_dept.name}</p>
-      </div>
+      {user?.photo ? (
+        <div className="flex flex-col items-center text-grey-white text-[.9rem] mt-4 font-jost">
+          <Avatar imgUrl={user?.photo} />
+          <p className="text-[1.2rem] font-bold">
+            {user?.user.last_name || "Student"} {user?.user.first_name}
+          </p>
+          <p>{user?.student_dept.name}</p>
+        </div>
+      ) : (
+        <div className="flex flex-col items-center mt-4">
+        <SimpleLoader />
+        </div>
+      )}
+
       <div className="mt-8 flex flex-col gap-6">
         {desktopSideBarLinks.map((item) => (
           <SideNavLink key={item.id} {...item} />
