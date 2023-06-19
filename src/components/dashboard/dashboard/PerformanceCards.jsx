@@ -1,11 +1,11 @@
-import { useAppContext } from "../../../context/AppContext";
-
+import { useDashboardContext } from "../../../context/DashboardContext";
 import Graduation from "../../../assets/svg/graduation.svg";
 import CarryOver from "../../../assets/svg/carry-over.svg"
 import Time from "../../../assets/svg/time.svg"
 
 export default function PerformanceCard() {
-  const {userData} = useAppContext()
+  const {user} = useDashboardContext()
+
   return (
     <div className="flex flex-col px-4 gap-2 md:flex-row md:items-center font-inter justify-between">
       <div className="flex justify-around border h-[8rem] max-h-[8rem] bg-dark-green p-4 text-grey-white shadow-dashboard-card rounded-md">
@@ -14,7 +14,7 @@ export default function PerformanceCard() {
         </div>
         <div className="px-4 w-1/2 flex-1 flex flex-col text-lg font-bold items-center justify-evenly">
             <p>CGPA</p>
-            <p className="text-[2rem]">{userData?.cgpa}</p>
+            <p className="text-[2rem]">{user?.cgpa}</p>
         </div>
       </div>
 
@@ -24,7 +24,7 @@ export default function PerformanceCard() {
         </div>
         <div className="px-4 w-1/2 flex-1 flex flex-col text-lg font-bold items-center justify-evenly">
             <p className="text-center">Carry Overs</p>
-            <p className="text-[2rem]">{userData?.carryovers}</p>
+            <p className="text-[2rem]">{user?.carryovers}</p>
         </div>
       </div>
 
@@ -34,7 +34,7 @@ export default function PerformanceCard() {
         </div>
         <div className="px-4 w-1/2 flex-1 flex flex-col text-lg font-bold items-center justify-evenly">
             <p className="text-center">Current Level</p>
-            <p className="text-[2rem]">{userData?.level}</p>
+            <p className="text-[2rem]">{user?.level}</p>
         </div>
       </div>
 

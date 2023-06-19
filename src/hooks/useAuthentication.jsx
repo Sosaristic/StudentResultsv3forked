@@ -9,7 +9,7 @@ export function useAuthentication(){
 const navigate = useNavigate()
 const {setLoader, setUserData} = useAppContext()
 const setLoginToken = (token)=>{
-window.sessionStorage.setItem("token", JSON.stringify(token))
+window.sessionStorage.setItem("token", token)
 }
 
 const removeToken = ()=>{
@@ -25,11 +25,7 @@ const signIn = (userValues)=>{
 postData("rest-auth/login/", userValues).then((value)=>{
     setLoader(false)
     setLoginToken(value.data.key)
-   
-     fetchData(value.data.key).then((response)=>{
-        setUserData(response)
-      navigate("/dashboard")
-     })
+   navigate("/dashboard")
 }).catch((error)=>{
     console.log(error);
     toast.error("Error trying to log in")
@@ -38,18 +34,7 @@ postData("rest-auth/login/", userValues).then((value)=>{
 })
 }
 
-async function fetchData(token){
-    try {
-     const response = await axios.get("https://elinteerie1.pythonanywhere.com/api/student/", {
-        headers: {
-          'Authorization': `Token ${token}`
-        }
-      })
-      return response.data
-    } catch (error) {
-      
-    }
-  }
+
 
 const signOut = ()=>{
     setLoader(true)
@@ -65,5 +50,5 @@ console.log(value);
 }
 
 
-return {setLoginToken, getToken, signIn, signOut, fetchData}
+return {setLoginToken, getToken, signIn, signOut}
 }

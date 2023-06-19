@@ -16,16 +16,3 @@ export function logOut(){
   }
 }
 
-export async function getUserData(token){
-console.log(token);
-  try {
-    const response = await axios.get(`${baseUrl}student/`, {
-      headers:{
-        Authorization:  `Token ${token.key}`
-      }
-    })
-    return response
-  } catch (error) {
-    console.log(error);
-  }
-}

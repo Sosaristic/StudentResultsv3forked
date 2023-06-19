@@ -1,9 +1,7 @@
 import React from "react";
-import { useAppContext } from "../../../context/AppContext";
-
+import { useDashboardContext } from "../../../context/DashboardContext";
 export default function InformationCard() {
-    const {userData} = useAppContext()
-  
+  const {user} = useDashboardContext()
   return (
     <div className="w-full lg:w-[60%] border p-2 relative bg-dark-green font-jost mt-4 text-grey-white shadow-dashboard-card rounded-md">
       <h2 className="text-[1.5rem] font-[800]">My Information</h2>
@@ -12,7 +10,7 @@ export default function InformationCard() {
         <tbody>
           <tr>
             <td className="font-bold text-[1.2rem]">Name:</td>
-            <td className="font-[500] capitalize">{userData?.user.last_name} {userData?.user.first_name}</td>
+            <td className="font-[500] capitalize">{user?.user.last_name} {user?.user.first_name}</td>
           </tr>
           <tr>
             <td className="font-bold text-[1.2rem]">Gender:</td>
@@ -20,24 +18,24 @@ export default function InformationCard() {
           </tr>
           <tr>
             <td className="font-bold text-[1.2rem]">Email:</td>
-            <td className="font-[500]">{userData?.user.email}</td>
+            <td className="font-[500]">{user?.user.email}</td>
           </tr>
           <tr>
             <td className="font-bold text-[1.2rem]">Department:</td>
-            <td className="font-[500]">{userData?.student_dept.name}</td>
+            <td className="font-[500]">{user?.student_dept.name}</td>
           </tr>
 
           <tr>
             <td className="font-bold text-[1.2rem]">Level:</td>
-            <td className="font-[500]">{userData?.level}lvl</td>
+            <td className="font-[500]">{user?.level}lvl</td>
           </tr>
           <tr>
             <td className="font-bold text-[1.2rem]">Faculty:</td>
-            <td className="font-[500]">{userData?.student_faculty.name}</td>
+            <td className="font-[500]">{user?.student_faculty.name}</td>
           </tr>
           <tr>
             <td className="font-bold text-[1.2rem]">Reg No:</td>
-            <td className="font-[500]">{userData?.student_reg}</td>
+            <td className="font-[500]">{user?.student_reg}</td>
           </tr>
         </tbody>
       </table>
