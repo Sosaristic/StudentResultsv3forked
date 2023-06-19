@@ -1,0 +1,8 @@
+export {default as Login} from "./Login"
+export {default as Dashboard} from "./Dashboard"
+export {default as Message} from "./Message"
+export {default as Notification} from "./Notification"
+export {default as Profile} from "./Profile"
+export {default as StudentResult} from "./StudentResult"
+export {default as Register} from "./Register"
+export {default as PasswordReset} from "./PasswordReset"
