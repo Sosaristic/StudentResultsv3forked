@@ -73,7 +73,7 @@ export default function StudentResult() {
         </p>
         <div className="flex bg-dark-green gap-2 items-center p-2 font-semibold">
           GP:{" "}
-          <div className="flex flex-col sm:flex-row justify-center items-center gap-2">
+          <div className="flex justify-center items-center gap-2">
             <span className="font-bold">{cgpa}</span>
             <span className="text-xs">{cgpaCalculator(cgpa)}</span>
           </div>

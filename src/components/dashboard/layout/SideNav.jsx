@@ -34,8 +34,9 @@ const SideNavLink = ({ name, link, icon }) => {
   );
 };
 
-export default function SideNav({user}) {
+export default function SideNav() {
   const { signOut } = useAuthentication();
+  const { user } = useDashboardContext();
 
   return (
     <section className="h-full relative flex flex-col">

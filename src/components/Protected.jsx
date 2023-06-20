@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import { Outlet, Navigate } from "react-router-dom";
 import useSWR from "swr"
 import axios from "axios";
@@ -10,7 +10,7 @@ import { useDashboardContext } from "../context/DashboardContext";
 
 export function Protected() {
   const sideBarRef = useRef(null);
-  const {openSideNav, setOpenSideNav} = useDashboardContext()
+  const {openSideNav, setOpenSideNav, setUser} = useDashboardContext()
   useClickAwayListener(sideBarRef, () => setOpenSideNav(false));
   const token = window.sessionStorage.getItem("token");
   if (!token) {
@@ -30,8 +30,9 @@ export function Protected() {
   }
 
 const {data, error} = useSWR("https://elinteerie1.pythonanywhere.com/api/student/", fetchData)
-console.log(data);
-
+useEffect(()=>{
+  setUser(data)
+ }, [data])
   return (
     <div className="bg-background min-h-screen relative flex ">
       {/* desktop side navigation */}
