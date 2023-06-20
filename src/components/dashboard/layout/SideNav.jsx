@@ -6,7 +6,6 @@ import { Avatar, SimpleLoader } from "../../ui";
 import { MdDashboard, MdLogout } from "react-icons/md";
 import { FaUser, FaEnvelope, FaBell } from "react-icons/fa";
 import { HiDocumentText } from "react-icons/hi";
-import { useEffect, useState } from "react";
 
 const desktopSideBarLinks = [
   { id: 1, name: "Dashboard", link: "/dashboard", icon: <MdDashboard /> },
@@ -35,9 +34,8 @@ const SideNavLink = ({ name, link, icon }) => {
   );
 };
 
-export default function SideNav() {
+export default function SideNav({user}) {
   const { signOut } = useAuthentication();
-  const { user } = useDashboardContext();
 
   return (
     <section className="h-full relative flex flex-col">

@@ -1,5 +1,7 @@
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { Outlet, Navigate } from "react-router-dom";
+import useSWR from "swr"
+import axios from "axios";
 import SideNav from "./dashboard/layout/SideNav";
 import DashboardHeader from "./dashboard/layout/DashboardHeader";
 import { MdClose } from "react-icons/md";
@@ -14,11 +16,27 @@ export function Protected() {
   if (!token) {
     return <Navigate to={"/login"} />;
   }
+  async function fetchData(){
+    try {
+     const response = await axios.get("https://elinteerie1.pythonanywhere.com/api/student/", {
+        headers: {
+          Authorization: `Token ${token}`
+        }
+      })
+      return response.data
+    } catch (error) {
+      
+    }
+  }
+
+const {data, error} = useSWR("https://elinteerie1.pythonanywhere.com/api/student/", fetchData)
+console.log(data);
+
   return (
     <div className="bg-background min-h-screen relative flex ">
       {/* desktop side navigation */}
       <div className="w-2/12 hidden lg:block bg-v-dark-green px-4">
-        <SideNav />
+        <SideNav user={data}/>
       </div>
 
       <div className="w-full relative lg:w-10/12">
