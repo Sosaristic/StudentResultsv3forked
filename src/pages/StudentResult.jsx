@@ -30,7 +30,7 @@ export default function StudentResult() {
       </div>
     );
   }
-
+console.log(data);
   const {
     student_grade: { total_grade_point, total_course_units, cgpa },
   } = data || {};
