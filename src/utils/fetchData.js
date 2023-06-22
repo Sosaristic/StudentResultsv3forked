@@ -16,3 +16,33 @@ export function logOut(){
   }
 }
 
+export async function getData(){
+  const token = window.sessionStorage.getItem("token")
+  try {
+    const response = await axios.get("https://elinteerie1.pythonanywhere.com/api/student/", {
+       headers: {
+         Authorization: `Token ${token}`
+       }
+     })
+     return response.data
+   } catch (error) {
+     
+   }
+}
+
+export async function getResults(query){
+  const token = window.sessionStorage.getItem("token")
+  try {
+    const response = await axios.get(`https://elinteerie1.pythonanywhere.com/api/courses/?${query}`, {
+       headers: {
+         Authorization: `Token ${token}`
+       }
+     })
+     return response.data
+   } catch (error) {
+     console.log(error);
+   }
+}
+
+
+

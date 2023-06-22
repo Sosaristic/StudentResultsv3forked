@@ -21,8 +21,6 @@ export default function ResultTable({ resultData: { course_items } }) {
           <tr>
             <th className="p-1">No</th>
             <th className="p-1">Course</th>
-            <th className="p-1">Code</th>
-            <th className="p-1">Units</th>
             <th className="p-1">CA</th>
             <th className="p-1">Exam</th>
             <th className="p-1">Total</th>
@@ -30,19 +28,17 @@ export default function ResultTable({ resultData: { course_items } }) {
           </tr>
         </thead>
         <tbody className="text-dark-green font-[500]">
-          {course_items?.map((course) => {
+          {course_items?.map((item, index) => {
             const {
               student_course_ca,
               student_course_exam_score,
               total_score,
-              course: { course_code, course_units, name, id },
-            } = course;
+              course
+            } = item;
             return (
-              <tr key={id} className="border border-v-dark-green">
-                <td className="p-1">{id}</td>
-                <td className="p-1">{name}</td>
-                <td className="p-1">{course_code}</td>
-                <td className="p-1">{course_units}</td>
+              <tr key={course} className="border border-v-dark-green">
+                <td className="p-1">{index + 1}</td>
+                <td className="p-1">{course}</td>
                 <td className="p-1">{student_course_ca}</td>
                 <td className="p-1">{student_course_exam_score}</td>
                 <td className="p-1">{total_score}</td>

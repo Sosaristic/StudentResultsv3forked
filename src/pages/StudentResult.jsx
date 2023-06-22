@@ -1,84 +1,66 @@
+import { useState } from "react";
 import axios from "axios";
 import useSWR from "swr";
 import { useAuthentication } from "../hooks/useAuthentication";
 import { SimpleLoader } from "../components/ui";
 import ResultTable from "../components/dashboard/results/ResultTable";
+import ResultFilter from "../components/dashboard/results/ResultFilter";
+import { cgpaCalculator } from "../utils/helperFunctions";
 
 export default function StudentResult() {
   const { getToken } = useAuthentication();
+  const [studentResult, setStudentResult] = useState(null);
+  const [loading, setLoading] = useState(false);
   const token = getToken();
 
-  async function fetchData() {
-    try {
-      const response = await axios.get("https://elinteerie1.pythonanywhere.com/api/courses/", {
-        headers: {
-          Authorization: `Token ${token}`,
-        },
-      });
-      return response.data;
-    } catch (error) {}
-  }
+  const { student_grade } = studentResult || {};
 
-  const { data, error } = useSWR("https://elinteerie1.pythonanywhere.com/api/courses/", fetchData);
-  if (error) {
-    return <div>Error trying to get student results</div>;
-  }
-  if (!data) {
-    return (
-      <div className="min-h-full min-w-full flex items-center justify-center">
-        <SimpleLoader />
-      </div>
-    );
-  }
-console.log(data);
-  const {
-    student_grade: { total_grade_point, total_course_units, cgpa },
-  } = data || {};
-  const cgpaCalculator = (gp) => {
-    const CGPA =
-      gp >= 4.5
-        ? "First Class"
-        : gp >= 3.5 && gp < 4.49
-        ? "2nd Class Upper"
-        : gp >= 2.40 && gp < 3.50
-        ? "2nd Class Lower"
-         : gp >= 1.50 && gp < 2.40
-        ? "3rd Class"
-        : "pass";
-        return CGPA
-  };
+  console.log(studentResult);
+
   return (
-    <div className="p-2 md:px-6 overflow-hidden">
+    <div className="p-2 md:px-6 overflow-hidden min-h-screen">
       <h2 className="font-righteous mt-4 text-[2.5rem] leading-7">Results</h2>
 
-      <div className="flex flex-col sm:flex-row w-fit text-grey-white mt-6 gap-2">
-        <p className="flex gap-2 items-center font-jost shadow-dashboard-card bg-dark-green p-1">
-          Session: <span className=" font-[500]">2022</span>
-        </p>
-        <p className="flex  gap-2 items-center font-jost shadow-dashboard-card bg-dark-green p-1">
-          Semester: <span className=" font-[500]">First</span>
-        </p>
-        <p className="flex font-[500] gap-2 items-center font-jost shadow-dashboard-card bg-dark-green p-1">
-          Courses: <span className="text-xl font-[500]">10</span>
-        </p>
+      <div className="mt-2">
+        <ResultFilter setStudentResult={setStudentResult} setLoading={setLoading} />
       </div>
+      {!studentResult && !loading && (
+        <div className="min-h-full min-w-full mt-8 font-inter flex items-center justify-center">
+          <p>Select Session and semester to get the result</p>
+        </div>
+      )}
+      {!studentResult && loading && (
+        <div className="flex items-center justify-center mt-8">
+          <SimpleLoader />
+        </div>
+      )}
 
-      <ResultTable resultData={data} />
-      <div className="flex flex-col text-grey-white sm:flex-row items-center justify-center gap-4 mt-2">
-        <p className="bg-dark-green p-2 font-semibold">
-          Total Units: <span className="font-bold">{total_course_units}</span>
-        </p>
-        <p className="bg-dark-green p-2 font-semibold">
-          Total Points: <span className="font-bold">{total_grade_point}</span>
-        </p>
-        <div className="flex bg-dark-green gap-2 items-center p-2 font-semibold">
-          GP:{" "}
-          <div className="flex justify-center items-center gap-2">
-            <span className="font-bold">{cgpa}</span>
-            <span className="text-xs">{cgpaCalculator(cgpa)}</span>
+      {studentResult && (
+        <div>
+          <ResultTable resultData={studentResult} />
+          <div className="flex flex-wrap justify-center text-grey-white gap-4 mt-2">
+            <p className="bg-dark-green p-2 font-semibold basis-[45%] md:basis-[23%] flex items-center flex-col md:flex-row gap-2">
+              <span> Courses:</span>{" "}
+              <span className="font-bold">{student_grade?.courses_offered.length}</span>
+            </p>
+            <p className="bg-dark-green p-2 font-semibold basis-[45%] md:basis-[23%] flex items-center flex-col md:flex-row gap-2">
+              <span>Total Units: </span>
+              <span className="font-bold">{student_grade?.total_course_units}</span>
+            </p>
+            <p className="bg-dark-green p-2 font-semibold basis-[45%] md:basis-[23%] flex items-center flex-col md:flex-row gap-2">
+              <span>Total Points: </span>
+              <span className="font-bold">{student_grade?.total_grade_point}</span>
+            </p>
+            <div className="flex flex-col md:flex-row bg-dark-green gap-2 items-center p-2 font-semibold basis-[45%] md:basis-[23%]">
+              
+              
+                <span className="font-bold">GP:{student_grade?.cgpa}</span>
+                <span className="text-xs">{cgpaCalculator(student_grade?.cgpa)}</span>
+          
+            </div>
           </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }

@@ -39,7 +39,7 @@ export default function SideNav() {
   const { user } = useDashboardContext();
 
   return (
-    <section className="h-full relative flex flex-col">
+    <section className="min-h-full relative flex flex-col">
       {user?.photo ? (
         <div className="flex flex-col items-center text-grey-white text-[.9rem] mt-4 font-jost">
           <Avatar imgUrl={user?.photo} />
