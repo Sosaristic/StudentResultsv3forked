@@ -6,25 +6,14 @@ import axios from "axios";
 import useSWR from "swr"
 import { useDashboardContext } from "../context/DashboardContext";
 import { SimpleLoader } from "../components/ui";
-
+import { getData } from "../utils/fetchData";
 
 const Dashboard = () => {
   const {setUser} = useDashboardContext()
   const token = window.sessionStorage.getItem("token")
-  async function fetchData(){
-        try {
-         const response = await axios.get("https://elinteerie1.pythonanywhere.com/api/student/", {
-            headers: {
-              Authorization: `Token ${token}`
-            }
-          })
-          return response.data
-        } catch (error) {
-          
-        }
-      }
+ 
 
-const {data, error} = useSWR("https://elinteerie1.pythonanywhere.com/api/student/", fetchData)
+const {data, error} = useSWR("https://elinteerie1.pythonanywhere.com/api/student/", getData)
  useEffect(()=>{
   setUser(data)
  }, [data])
@@ -35,7 +24,7 @@ const {data, error} = useSWR("https://elinteerie1.pythonanywhere.com/api/student
   
 console.log(data)
   return (
-    <div>
+    <div pb-4>
       <main className="px-4 relative  min-h-full">
         <GreetUser userData = {data}/>
         <PerformanceCard userData={data}/>
