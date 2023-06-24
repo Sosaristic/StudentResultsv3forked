@@ -9,7 +9,7 @@ export default function StudentResult() {
   const [studentResult, setStudentResult] = useState(null);
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("Select Session and semester to get the result")
-
+console.log(studentResult)
   return (
     <div className="p-2 md:px-6 overflow-hidden min-h-screen">
       <h2 className="font-righteous mt-4 text-[2.5rem] leading-7">Results</h2>
@@ -29,7 +29,12 @@ export default function StudentResult() {
       )}
 
       {studentResult && (
-        <div>
+        <section>
+          <div className="flex mt-4 gap-2 text-grey-white font-jost mb-1">
+            <p className="bg-dark-green py-1 px-2 rounded-sm">Session: <span className="font-[600]">{studentResult?.semester.session}</span></p>
+            <p className="bg-dark-green py-1 px-2 rounded-sm">Session: <span className="font-[600]">{studentResult?.semester.semester_name}</span></p>
+
+          </div>
           <ResultTable resultData={studentResult} />
           <div className="flex flex-wrap justify-center text-grey-white gap-4 mt-2">
             <p className="bg-dark-green p-2 font-semibold basis-[45%] md:basis-[23%] flex items-center flex-col md:flex-row gap-2">
@@ -38,7 +43,7 @@ export default function StudentResult() {
             </p>
             <p className="bg-dark-green p-2 font-semibold basis-[45%] md:basis-[23%] flex items-center flex-col md:flex-row gap-2">
               <span>Total Units: </span>
-              <span className="font-[900]">{studentResult.student_grade.total_course_units}</span>
+              <span className="font-[900]">{studentResult.student_grade.total_grade_point}</span>
             </p>
             <p className="bg-dark-green p-2 font-semibold basis-[45%] md:basis-[23%] flex items-center flex-col md:flex-row gap-2">
               <span>Total Points: </span>
@@ -51,7 +56,7 @@ export default function StudentResult() {
               </span>
             </div>
           </div>
-        </div>
+        </section>
       )}
     </div>
   );

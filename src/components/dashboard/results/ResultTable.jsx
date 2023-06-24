@@ -15,7 +15,7 @@ export default function ResultTable({ resultData: { course_items } }) {
     return grade;
   }
   return (
-    <div className="mt-2 text-center overflow-auto relative">
+    <div className=" text-center overflow-auto relative">
       <table className="table-auto w-full text-md mx-auto border-spacing-3 border-2 border-dark-green">
         <thead className="bg-dark-green text-grey-white">
           <tr>
