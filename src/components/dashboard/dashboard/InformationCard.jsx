@@ -18,7 +18,7 @@ export default function InformationCard() {
           </tr>
           <tr>
             <td className="font-bold text-[1.2rem]">DOB:</td>
-            <td className="font-[500]">{user?.date_of_birth}</td>
+            <td className="font-[500]">{user?.date_of_birth || "not available"}</td>
           </tr>
 
           <tr>

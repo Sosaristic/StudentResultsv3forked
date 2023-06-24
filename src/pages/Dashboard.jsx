@@ -10,7 +10,6 @@ import { getData } from "../utils/fetchData";
 
 const Dashboard = () => {
   const {setUser} = useDashboardContext()
-  const token = window.sessionStorage.getItem("token")
  
 
 const {data, error} = useSWR("https://elinteerie1.pythonanywhere.com/api/student/", getData)
@@ -22,9 +21,8 @@ const {data, error} = useSWR("https://elinteerie1.pythonanywhere.com/api/student
   return <div className="min-h-full min-w-full flex items-center justify-center"><SimpleLoader /></div>
  }
   
-console.log(data)
   return (
-    <div pb-4>
+    <div className="pb-4">
       <main className="px-4 relative  min-h-full">
         <GreetUser userData = {data}/>
         <PerformanceCard userData={data}/>

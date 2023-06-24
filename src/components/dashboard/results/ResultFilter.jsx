@@ -37,7 +37,7 @@ export default function ResultFilter({ setStudentResult, setLoading,  }) {
     if (sessionDropdownValues.value) {
       setLoading(true)
       setStudentResult(null)
-      const query = `session=${sessionDropdownValues.value}&semester=${semesterValue.value}`;
+      const query = `session_name=${sessionDropdownValues.value}&semester_name=${semesterValue.value}`;
       getResults(query)
         .then((response) => {
           setStudentResult(response)
@@ -46,7 +46,6 @@ export default function ResultFilter({ setStudentResult, setLoading,  }) {
         .catch((error) => {
           setLoading(false)
           setStudentResult(null)
-          console.log(error);
         });
     }
   };

@@ -1,4 +1,4 @@
-export const cgpaCalculator = (gp) => {
+export const classOfDegreeCalculator = (gp) => {
       const CGPA =
         gp >= 4.5
           ? "First Class"
@@ -8,6 +8,9 @@ export const cgpaCalculator = (gp) => {
           ? "2nd Class Lower"
           : gp >= 1.5 && gp < 2.4
           ? "3rd Class"
-          : "pass";
+          : gp >= 1.0 && gp < 1.5
+          ? "pass"
+          :"fail"
+          
       return CGPA;
     };

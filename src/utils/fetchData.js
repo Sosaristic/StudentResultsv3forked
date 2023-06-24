@@ -1,4 +1,5 @@
 import axios from "axios";
+import {toast} from "react-toastify"
 
 export const baseUrl = "https://elinteerie1.pythonanywhere.com/api/";
 
@@ -33,14 +34,14 @@ export async function getData(){
 export async function getResults(query){
   const token = window.sessionStorage.getItem("token")
   try {
-    const response = await axios.get(`https://elinteerie1.pythonanywhere.com/api/courses/?${query}`, {
+    const response = await axios.get(`https://elinteerie1.pythonanywhere.com/api/courses-filter/?${query}`, {
        headers: {
          Authorization: `Token ${token}`
        }
      })
      return response.data
    } catch (error) {
-     console.log(error);
+     toast.info("Could not get results")
    }
 }
 
