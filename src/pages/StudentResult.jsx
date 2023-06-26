@@ -11,7 +11,7 @@ export default function StudentResult() {
   const [message, setMessage] = useState("Select Session and semester to get the result");
   console.log(studentResult);
   return (
-    <section className="p-2 md:px-6 overflow-hidden ">
+    <section className="p-2 md:px-6 overflow-hidden min-h-full">
       <h2 className="font-righteous mt-4 text-[2.5rem] leading-7">Results</h2>
 
       <div className="mt-2">
