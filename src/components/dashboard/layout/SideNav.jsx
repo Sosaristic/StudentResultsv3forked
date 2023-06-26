@@ -62,7 +62,7 @@ export default function SideNav() {
 
       <button
         type="button"
-        className="w-full mt-auto mb-4 text-[1rem] font-bold p-2 text-grey-white flex items-center justify-center gap-4 rounded-2xl border border-grey-white hover:bg-grey-white hover:text-v-dark-green active:bg-v-dark-green active:text-grey-white"
+        className="w-full mt-auto mb-[4rem] lg:mb-4 text-[1rem] font-bold p-2 text-grey-white flex items-center justify-center gap-4 rounded-2xl border border-grey-white hover:bg-grey-white hover:text-v-dark-green active:bg-v-dark-green active:text-grey-white"
         onClick={() => signOut()}
       >
         <span className="text-[1.4rem]">
