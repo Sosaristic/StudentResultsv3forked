@@ -39,27 +39,8 @@ export default function StudentResult() {
             </p>
           </div>
           <ResultTable resultData={studentResult} />
-          {/* <div className="flex flex-wrap justify-center text-grey-white gap-4 mt-2">
-            <p className="bg-dark-green p-2 font-semibold basis-[45%] md:basis-[23%] flex items-center flex-col md:flex-row gap-2">
-              <span> Courses:</span>{" "}
-              <span className="font-[900]">{studentResult.course_items.length}</span>
-            </p>
-            <p className="bg-dark-green p-2 font-semibold basis-[45%] md:basis-[23%] flex items-center flex-col md:flex-row gap-2">
-              <span>Total Units: </span>
-              <span className="font-[900]">{studentResult.student_grade.total_grade_point}</span>
-            </p>
-            <p className="bg-dark-green p-2 font-semibold basis-[45%] md:basis-[23%] flex items-center flex-col md:flex-row gap-2">
-              <span>Total Points: </span>
-              <span className="font-[900]">{studentResult.student_grade.total_course_units}</span>
-            </p>
-            <div className="flex flex-col md:flex-row bg-dark-green gap-2 items-center p-2 font-semibold basis-[45%] md:basis-[23%]">
-              <span className="font-[900]">GP: {studentResult.student_grade.cgpa}</span>
-              <span className="text-xs">
-                {classOfDegreeCalculator(studentResult.student_grade.cgpa)}
-              </span>
-            </div>
-          </div> */}
-          <div className="overflow-auto relative">
+       
+          <div className="overflow-auto relative mt-2">
           <table className="table-auto w-full text-md mx-auto border-spacing-3 border-2 border-dark-green">
             <thead className="bg-dark-green text-grey-white">
               <tr>
