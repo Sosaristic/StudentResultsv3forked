@@ -34,7 +34,7 @@ useEffect(()=>{
   setUser(data)
  }, [data])
   return (
-    <div className="bg-background min-h-screen relative flex ">
+    <div className="bg-background min-h-screen relative flex overflow-hidden">
       {/* desktop side navigation */}
       <div className="w-2/12 hidden lg:block bg-v-dark-green px-4">
         <SideNav user={data}/>

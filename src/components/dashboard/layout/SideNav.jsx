@@ -39,7 +39,7 @@ export default function SideNav() {
   const { user } = useDashboardContext();
 
   return (
-    <section className="min-h-full relative flex flex-col">
+    <section className="min-h-screen relative flex flex-col">
       {user?.photo ? (
         <div className="flex flex-col items-center text-grey-white text-[.9rem] mt-4 font-jost">
           <Avatar imgUrl={user?.photo} />
@@ -50,7 +50,7 @@ export default function SideNav() {
         </div>
       ) : (
         <div className="flex flex-col items-center mt-4">
-        <SimpleLoader />
+          <SimpleLoader />
         </div>
       )}
 
@@ -62,7 +62,7 @@ export default function SideNav() {
 
       <button
         type="button"
-        className="w-full mt-4  text-[1rem] font-bold p-2 bg-background text-dark-green flex items-center justify-center gap-1 rounded-2xl"
+        className="w-full mt-auto mb-4 text-[1rem] font-bold p-2 text-grey-white flex items-center justify-center gap-4 rounded-2xl border border-grey-white hover:bg-grey-white hover:text-v-dark-green active:bg-v-dark-green active:text-grey-white"
         onClick={() => signOut()}
       >
         <span className="text-[1.4rem]">

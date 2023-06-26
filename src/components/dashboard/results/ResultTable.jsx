@@ -39,7 +39,7 @@ export default function ResultTable({ resultData: { course_items } }) {
               course: {name, course_code, course_units}
             } = item;
             return (
-              <tr key={index} className="border border-v-dark-green">
+              <tr key={index} className="border border-v-dark-green my-2">
                 <td className="p-1">{index + 1}</td>
                 <td className="p-1">{name}</td>
                 <td className="p-1">{course_code}</td>
