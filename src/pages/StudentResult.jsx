@@ -27,7 +27,6 @@ export default function StudentResult() {
           <SimpleLoader />
         </div>
       )}
-
       {studentResult && (
         <section>
           <div className="flex mt-4 gap-2 text-grey-white font-jost mb-1">
@@ -47,17 +46,17 @@ export default function StudentResult() {
                 <th className="px-4 py-2">Courses</th>
                 <th className="px-4 py-2">Total Units</th>
                 <th className="px-4 py-2">Total Points</th>
-                <th className="px-4 py-2">GP</th>
+                <th className="px-4 py-2">GPA</th>
                 <th className="px-4 py-2">Class Of Degree</th>
               </tr>
             </thead>
             <tbody className="text-center font-bold text-dark-green text-lg">
               <tr>
                 <td className="px-4 py-2 whitespace-nowrap w-auto">{studentResult.course_items.length}</td>
-                <td className="px-4 py-2 whitespace-nowrap w-auto">{studentResult.student_grade.total_grade_point}</td>
-                <td className="px-4 py-2 whitespace-nowrap w-auto">{studentResult.student_grade.total_course_units}</td>
-                <td className="px-4 py-2 whitespace-nowrap w-auto">{studentResult.student_grade.cgpa}</td>
-                <td className="px-4 py-2 whitespace-nowrap w-auto"> {classOfDegreeCalculator(studentResult.student_grade.cgpa)}</td>
+                <td className="px-4 py-2 whitespace-nowrap w-auto">{studentResult.semester_gpa.total_grade_points}</td>
+                <td className="px-4 py-2 whitespace-nowrap w-auto">{studentResult.semester_gpa.total_course_units}</td>
+                <td className="px-4 py-2 whitespace-nowrap w-auto">{studentResult.semester_gpa.gpa}</td>
+                <td className="px-4 py-2 whitespace-nowrap w-auto"> {classOfDegreeCalculator(studentResult.semester_gpa.gpa)}</td>
               </tr>
             </tbody>
           </table>
